@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Pytest Selenium Example
 
 on:
   push:
@@ -30,4 +30,10 @@ jobs:
         python -m pipenv install
     - name: Test with pytest
       run: |
-        python -m pipenv run pytest
+        python -m pipenv run pytest --doctest-modules --junitxml=junit/test-results.xml --html=html/report.html --self-contained-html
+    - name: Upload pytest test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-results-pytest-selenium-example
+        path: html/report.html
+      if: ${{ always() }}
