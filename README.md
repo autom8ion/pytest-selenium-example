@@ -17,4 +17,4 @@ pytest ./test/test_github_login.py
 
 # run with pytest-html report
 
-pytest --html=report.html  --self-contained
+pytest --html=report.html --self-contained-html
